@@ -1,6 +1,6 @@
 typedef struct s_print
 {
-	char	*format;
+	va_list	args;
 
 	int		next;
 
