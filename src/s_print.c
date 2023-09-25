@@ -1,26 +1,5 @@
-typedef struct s_print
-{
-	va_list	args;
-
-	int		next;
-
-	int		i;
-	int		len;
-
-	int		wdt; //width (0-9)
-	int		prc; //precisiion
-	int		zero; //zero padding
-	int		hash; //#
-	int		pnt; //point.
-	int		dash; //-
-	int		tl; //total length
-	int		sign; //+(pos)&-(neg) number
-	int		is_zero; //is number_zero
-	int		perc; //%(percent)
-	int		sp; //space flag' '
-}	t_print
-
-t_print	*ft_initialise_tab(t_print *tab)
+#include "ft_printf.h"
+t_list	*ft_initialise_tab(t_list *tab)
 {
 	tab->wdt = 0;
 	tab->prc =0;
@@ -33,5 +12,4 @@ t_print	*ft_initialise_tab(t_print *tab)
 	tab->is_zero = 0;
 	tab->perc = 0;
 	tab->sp = 0;
-	return (tab);
 }
