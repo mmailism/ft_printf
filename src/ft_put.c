@@ -15,13 +15,6 @@ t_print	*ft_tabzero(t_print *tab)
 	tab->sp = 0;
 }
 
-void	ft_print_char(t_list *tab)
-{
-	char	i;
-
-	i = va_arg(tab->args, int)
-}
-
 int	ft_putstr(char const *s)
 {
 	if (!s)
@@ -60,5 +53,18 @@ int	ft_putunsigned(unsigned int n)
 
 int	ft_putaddress(unsigned long adds)
 {
-	if
+	int	i;
+
+	i = 0;
+	i += write(1, "0x", 2)
+	if (adds == 0)
+		i += write(1, "0", 1)
+	else
+		i = ft_strlen(adds);
+	return (i);
+}
+
+int	ft_putuplw(unsigned int uplw)
+{
+	
 }

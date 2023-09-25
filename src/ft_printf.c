@@ -6,15 +6,17 @@ int	ft_format(va_list args, const char format)
 	void	*ptr;
 
 	if (format == 'c')
-		return (ft_putchar((va_arg(args, int))));
+		return (ft_putchar(va_arg(args, int)));
 	else if (format == 's')
-		return (ft_putstr((va_arg(args, char *))));
+		return (ft_putstr(va_arg(args, char *)));
 	else if (format == 'd' || format == 'i')
-		return (ft_putnbr((va_arg(args, int))));
+		return (ft_putnbr(va_arg(args, int)));
 	else if (format == 'u')
-		return (ft_putunsign((va_arg(args, unsigned int))));
+		return (ft_putunsign(va_arg(args, unsigned int)));
 	else if (format == 'p')
-		return (ft_putaddress((va_arg(args, unsigned long)));
+		return (ft_putaddress(va_arg(args, unsigned long)));
+	else if (format == 'x' || format == 'X')
+		return (ft_putuplw(va_arg(args, unsigned int)));
 	else
 		return (-1);
 }
