@@ -28,7 +28,7 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int	ft_putnbr(int n)
+int	ft_putdigit(int n)
 {
 	if (n < 0)
 	{
@@ -37,10 +37,10 @@ int	ft_putnbr(int n)
 	}
 	if (n >= 10)
 	{
-		ft_putnbr(n / 10);
+		ft_putdigit(n / 10);
 	}
 	ft_putchar(n % 10 + '0');
-	return (ft_putnbr(n));
+	return (ft_putdigit(n));
 }
 
 int	ft_putunsigned(unsigned int n)
