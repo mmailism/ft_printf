@@ -35,6 +35,19 @@ void	*ft_calloc(size_t count, size_t n)
 	return (alt);
 }
 
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (*str != '\0')
+	{
+		str++;
+		i++;
+	}
+	return (i);
+}
+
 int	ft_numlen(long n)
 {
 	int	i;

@@ -6,19 +6,10 @@
 void	ft_putchar_fd(char c, int fd);
 char	*ft_itoa(int n);
 char	*ft_utoi(unsigned int n);
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
+size_t	ft_strlen(const char *str);
+void	ft_put_hlxX(unsigned int num, const char base);
+int	ft_ptr_len(int n);
+void	ft_put_ptr(int n);
 
 int	ft_print_char(int c)
 {
@@ -41,6 +32,7 @@ int	ft_print_nbr(int n)
 	len = ft_print_str(num);
 	return (len);
 }
+
 int	ft_print_unsigned(unsigned int n)
 {
 	int		length;
@@ -57,39 +49,6 @@ int	ft_print_unsigned(unsigned int n)
 	return (length);
 }
 
-int	ft_hlxXlen(unsigned int n)
-{
-	int	len;
-	len = 0;
-	while (n != 0)
-	{
-		len++;
-		n = n / 16;
-	}
-	return (len);
-}
-
-void	ft_put_hlxX(unsigned int num, const char base)
-{
-	if (num >= 16)
-	{
-		ft_put_hlxX(num / 16, base);
-		ft_put_hlxX(num % 16, base);
-	}
-	else
-	{
-		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
-		else
-		{
-			if (base == 'x')
-				ft_putchar_fd((num - 10 + 'a'), 1);
-			if (base == 'X')
-				ft_putchar_fd((num - 10 + 'A'), 1);
-		}
-	}
-}
-
 int	ft_print_hlxX(unsigned int n, const char base)
 {
 	int	len;
@@ -100,4 +59,26 @@ int	ft_print_hlxX(unsigned int n, const char base)
 	else
 		ft_put_hlxX(n, base);
 	return (ft_hlxXlen(n));
+}
+
+int	ft_print_ptr(unsigned long long ptr)
+{
+	int	length;
+
+	length = 0;
+	length += write(1, "0x", 2);
+	if (ptr == 0)
+		length += write(1, "0", 1);
+	else
+	{
+		ft_put_ptr(ptr);
+		length += ft_ptr_len(ptr);
+	}
+	return (length);
+}
+
+int	ft_printpercent(void)
+{
+	write(1, "%", 1);
+	return (1);
 }
