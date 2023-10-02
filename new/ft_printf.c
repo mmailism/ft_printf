@@ -1,14 +1,16 @@
+// #include "ft_printf.h"
+#include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 
 int	ft_print_char(int c);
 int	ft_print_str(char *str);
 int	ft_print_nbr(int n);
 int	ft_print_unsigned(unsigned int n);
 int	ft_print_hlxX(unsigned int n, const char base);
-int	ft_print_ptr(unsigned long long ptr);
+int	ft_print_address(unsigned long long ptr);
+int	ft_print_perc(void);
 
 int	print_format(const char sp, va_list ap)
 {
@@ -20,7 +22,7 @@ int	print_format(const char sp, va_list ap)
 	else if (sp == 's')
 		count += ft_print_str(va_arg(ap, char *));
 	else if (sp == 'p')
-		count += ft_print_address(va_arg(ap, unsigned long));	
+		count += ft_print_address(va_arg(ap, unsigned long long));
 	else if (sp == 'd' || sp == 'i')
 		count += ft_print_nbr(va_arg(ap, int));
 	else if (sp == 'u')
@@ -63,12 +65,14 @@ int	main()
 	i = 127;
 	count = ft_printf("abc%s\n", "def");
 	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	ft_printf("big %X and small %x\n", i, i);
+	ft_printf("big %X and small %x and percent %%\n", i, i);
+	ft_printf("address : %p\n", "m");
 	write(1, "\n", 1);
 	write(1, "and", 3);
 	write(1, "\n\n", 2);
 
 	count = printf("abc%s\n", "def");
 	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	printf("big %X and small %x\n", i, i);
+	printf("big %X and small %x and percent %%\n", i, i);
+	printf("address : %p\n", "m");
 }

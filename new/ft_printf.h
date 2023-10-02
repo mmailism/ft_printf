@@ -8,8 +8,23 @@
 
 typedef struct s_list
 {
-	s_list	*ap;
-}			va_list;
+	struct s_list	*ap;
+
+	int				i;
+	int				len;
+
+	int				start;
+	int				next;
+
+	int				minus; // -
+	int				plus; // +
+	int				space; //' '
+	int				zero; //0
+	int				hash; //#
+	int				width //0-9
+	int				point; //.
+	int				poiandhas; //.#
+}			t_list;
 
 int	ft_printf(const char *format, ...);
 

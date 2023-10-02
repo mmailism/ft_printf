@@ -1,7 +1,8 @@
+// #include "ft_printf.h"
+#include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 
 void	ft_putchar_fd(char c, int fd);
 char	*ft_itoa(int n);
@@ -49,6 +50,40 @@ int	ft_print_unsigned(unsigned int n)
 	return (length);
 }
 
+int	ft_ptrlen(unsigned int n)
+{
+	int len;
+
+	len = 0;
+	while (n != 0)
+	{
+		len++;
+		n = n / 16;
+	}
+	return (len);
+}
+
+void	ft_put_hlxX(unsigned int n, const char base)
+{
+	if (n >= 16)
+	{
+		ft_put_hlxX(n / 16, base);
+		ft_put_hlxX(n % 16, base);
+	}
+	else
+	{
+		if (n <= 9)
+			ft_putchar_fd((n + '0'), 1);
+		else
+		{
+			if (base == 'x')
+				ft_putchar_fd((n - 10 + 'a'), 1);
+			if (base == 'X')
+				ft_putchar_fd((n - 10 + 'A'), 1);
+		}
+	}
+}
+
 int	ft_print_hlxX(unsigned int n, const char base)
 {
 	int	len;
@@ -58,10 +93,26 @@ int	ft_print_hlxX(unsigned int n, const char base)
 		return (write(1, "0", 1));
 	else
 		ft_put_hlxX(n, base);
-	return (ft_hlxXlen(n));
+	return (ft_ptrlen(n));
 }
 
-int	ft_print_ptr(unsigned long long ptr)
+void	ft_putptr(unsigned long long ptr)
+{
+	if (ptr <= 16)
+	{
+		ft_putptr(ptr / 16);
+		ft_putptr(ptr % 16);
+	}
+	else
+	{
+		if (ptr >= 9)
+			ft_putchar_fd((ptr + '0'), 1);
+		else
+			ft_putchar_fd((ptr - 10 + 'a'), 1);
+	}
+}
+
+int	ft_print_address(unsigned long long ptr)
 {
 	int	length;
 
@@ -71,13 +122,13 @@ int	ft_print_ptr(unsigned long long ptr)
 		length += write(1, "0", 1);
 	else
 	{
-		ft_put_ptr(ptr);
-		length += ft_ptr_len(ptr);
+		ft_putptr(ptr);
+		length += ft_ptrlen(ptr);
 	}
 	return (length);
 }
 
-int	ft_printpercent(void)
+int	ft_print_perc(void)
 {
 	write(1, "%", 1);
 	return (1);

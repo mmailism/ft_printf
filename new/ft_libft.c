@@ -1,7 +1,8 @@
+// #include "ft_printf.h"
+#include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
