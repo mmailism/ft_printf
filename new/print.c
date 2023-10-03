@@ -9,12 +9,12 @@ char	*ft_itoa(int n);
 char	*ft_utoi(unsigned int n);
 size_t	ft_strlen(const char *str);
 void	ft_put_hlxX(unsigned int num, const char base);
-int	ft_ptr_len(int n);
+int		ft_ptr_len(int n);
 void	ft_put_ptr(int n);
 
 int	ft_print_char(int c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 int	ft_print_str(char *str)
@@ -23,6 +23,7 @@ int	ft_print_str(char *str)
 		return (write(1, "(null)", 6));
 	return (write(1, str, ft_strlen(str)));
 }
+
 int	ft_print_nbr(int n)
 {
 	int		len;
