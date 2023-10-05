@@ -1,16 +1,16 @@
-// #include "ft_printf.h"
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpueankl <<marvin@42.fr>>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/04 17:29:14 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/10/04 17:30:24 by kpueankl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_print_char(int c);
-int	ft_print_str(char *str);
-int	ft_print_nbr(int n);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hlxX(unsigned int n, const char base);
-int	ft_print_address(unsigned long long ptr);
-int	ft_print_perc(void);
+#include "ft_printf.h"
 
 int	print_format(const char sp, va_list ap)
 {

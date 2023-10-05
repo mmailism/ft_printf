@@ -1,8 +1,16 @@
-// #include "ft_printf.h"
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_libft.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/04 17:29:02 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/10/04 17:29:07 by kpueankl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

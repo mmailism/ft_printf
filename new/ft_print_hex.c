@@ -1,55 +1,4 @@
-// #include "ft_printf.h"
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-void	ft_putchar_fd(char c, int fd);
-char	*ft_itoa(int n);
-char	*ft_utoi(unsigned int n);
-size_t	ft_strlen(const char *str);
-void	ft_put_hlxX(unsigned int num, const char base);
-int		ft_ptr_len(int n);
-void	ft_put_ptr(int n);
-
-int	ft_print_char(int c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_str(char *str)
-{
-	if (!str)
-		return (write(1, "(null)", 6));
-	return (write(1, str, ft_strlen(str)));
-}
-
-int	ft_print_nbr(int n)
-{
-	int		len;
-	char	*num;
-
-	len = 0;
-	num = ft_itoa(n);
-	len = ft_print_str(num);
-	return (len);
-}
-
-int	ft_print_unsigned(unsigned int n)
-{
-	int		length;
-	char	*num;
-
-	length = 0;
-	if (n == 0)
-		length += write(1, "0", 1);
-	else
-	{
-		num = ft_utoi(n);
-		length += ft_print_str(num);
-	}
-	return (length);
-}
+#include "ft_printf.h"
 
 int	ft_ptrlen(unsigned int n)
 {
@@ -127,10 +76,4 @@ int	ft_print_address(unsigned long long ptr)
 		length += ft_ptrlen(ptr);
 	}
 	return (length);
-}
-
-int	ft_print_perc(void)
-{
-	write(1, "%", 1);
-	return (1);
 }
