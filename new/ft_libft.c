@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_libft.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kpueankl <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 17:29:02 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/04 17:29:07 by kpueankl         ###   ########.fr       */
+/*   Created: 2023/10/05 17:46:29 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/10/05 18:09:11 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,6 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t count, size_t n)
-{
-	void	*alt;
-
-	alt = (void *)malloc(count * n);
-	if (alt == NULL)
-		return (NULL);
-	ft_bzero(alt, (count * n));
-	return (alt);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
-
 int	ft_numlen(long n)
 {
 	int	i;
@@ -77,49 +53,15 @@ int	ft_numlen(long n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+size_t	ft_strlen(const char *str)
 {
-	char	*str;
-	int		i;
+	size_t	i;
 
-	i = ft_numlen(n);
-	str = ft_calloc(i + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	if (n < 0)
+	i = 0;
+	while (*str != '\0')
 	{
-		str[0] = '-';
-		if (n == -2147483648)
-		{
-			str[--i] = '8';
-			n /= 10;
-		}
-		n = -n;
+		str++;
+		i++;
 	}
-	while (i-- && n != 0)
-	{
-		str[i] = (n % 10) + '0';
-		n /= 10;
-	}
-	return (str);
-}
-char	*ft_utoi(unsigned int n)
-{
-		char	*str;
-	int		i;
-
-	i = ft_numlen(n);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	str[i] = '\0';
-	while (n != 0)
-	{
-		str[i] = (n % 10) + '0';
-		n /= 10;
-		i--;
-	}
-	return (str);
+	return (i);
 }

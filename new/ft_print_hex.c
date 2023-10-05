@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpueankl <<marvin@42.fr>>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 17:55:14 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/10/05 17:56:38 by kpueankl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_ptrlen(unsigned int n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (n != 0)
@@ -13,12 +25,12 @@ int	ft_ptrlen(unsigned int n)
 	return (len);
 }
 
-void	ft_put_hlxX(unsigned int n, const char base)
+void	ft_put_hlx(unsigned int n, const char base)
 {
 	if (n >= 16)
 	{
-		ft_put_hlxX(n / 16, base);
-		ft_put_hlxX(n % 16, base);
+		ft_put_hlx(n / 16, base);
+		ft_put_hlx(n % 16, base);
 	}
 	else
 	{
@@ -34,7 +46,7 @@ void	ft_put_hlxX(unsigned int n, const char base)
 	}
 }
 
-int	ft_print_hlxX(unsigned int n, const char base)
+int	ft_print_hlx(unsigned int n, const char base)
 {
 	int	len;
 
@@ -42,7 +54,7 @@ int	ft_print_hlxX(unsigned int n, const char base)
 	if (n == 0)
 		return (write(1, "0", 1));
 	else
-		ft_put_hlxX(n, base);
+		ft_put_hlx(n, base);
 	return (ft_ptrlen(n));
 }
 

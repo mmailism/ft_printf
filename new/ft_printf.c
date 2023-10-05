@@ -5,10 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpueankl <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 17:29:14 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/04 17:30:24 by kpueankl         ###   ########.fr       */
+/*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/10/05 18:01:23 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 
 #include "ft_printf.h"
 
@@ -28,7 +32,7 @@ int	print_format(const char sp, va_list ap)
 	else if (sp == 'u')
 		count += ft_print_unsigned(va_arg(ap, unsigned int));
 	else if (sp == 'x' || sp == 'X')
-		count += ft_print_hlxX(va_arg(ap, unsigned int), sp);
+		count += ft_print_hlx(va_arg(ap, unsigned int), sp);
 	else if (sp == '%')
 		count += ft_print_perc();
 	else
@@ -55,24 +59,24 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-int	main()
-{
-	int	count;
-	int	n;
-	int i;
+// int	main()
+// {
+// 	int	count;
+// 	int	n;
+// 	int i;
 
-	n = 100;
-	i = 127;
-	count = ft_printf("abc%s\n", "def");
-	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	ft_printf("big %X and small %x and percent %%\n", i, i);
-	ft_printf("address : %p\n", "m");
-	write(1, "\n", 1);
-	write(1, "and", 3);
-	write(1, "\n\n", 2);
+// 	n = 100;
+// 	i = 127;
+// 	count = ft_printf("abc%s\n", "def");
+// 	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
+// 	ft_printf("big %X and small %x and percent %%\n", i, i);
+// 	ft_printf("address : %p\n", "m");
+// 	write(1, "\n", 1);
+// 	write(1, "and", 3);
+// 	write(1, "\n\n", 2);
 
-	count = printf("abc%s\n", "def");
-	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	printf("big %X and small %x and percent %%\n", i, i);
-	printf("address : %p\n", "m");
-}
+// 	count = printf("abc%s\n", "def");
+// 	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
+// 	printf("big %X and small %x and percent %%\n", i, i);
+// 	printf("address : %p\n", "m");
+// }
