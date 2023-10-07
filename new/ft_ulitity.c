@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ulitity.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <<marvin@42.fr>>                  +#+  +:+       +#+        */
+/*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:53:06 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/05 18:20:26 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/07 18:25:39 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-char	*ft_utoi(unsigned int n)
+char	*ft_utoi(unsigned long n)
 {
 	char	*str;
 	int		i;
 
 	i = ft_numlen(n);
-	str = (char *)malloc(sizeof(char) * (i + 1));
+	str = 0;
 	if (!str)
 		return (NULL);
 	str[i] = '\0';

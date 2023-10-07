@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <<marvin@42.fr>>                  +#+  +:+       +#+        */
+/*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/05 18:01:23 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/07 18:24:03 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	print_format(const char sp, va_list ap)
 	else if (sp == 'd' || sp == 'i')
 		count += ft_print_nbr(va_arg(ap, int));
 	else if (sp == 'u')
-		count += ft_print_unsigned(va_arg(ap, unsigned int));
+		count += ft_print_unsigned(va_arg(ap, unsigned long));
 	else if (sp == 'x' || sp == 'X')
 		count += ft_print_hlx(va_arg(ap, unsigned int), sp);
 	else if (sp == '%')
@@ -70,7 +70,7 @@ int	ft_printf(const char *format, ...)
 // 	count = ft_printf("abc%s\n", "def");
 // 	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
 // 	ft_printf("big %X and small %x and percent %%\n", i, i);
-// 	ft_printf("address : %p\n", "m");
+// 	ft_printf("address : %p %p\n", "-1", NULL);
 // 	write(1, "\n", 1);
 // 	write(1, "and", 3);
 // 	write(1, "\n\n", 2);
@@ -78,5 +78,5 @@ int	ft_printf(const char *format, ...)
 // 	count = printf("abc%s\n", "def");
 // 	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
 // 	printf("big %X and small %x and percent %%\n", i, i);
-// 	printf("address : %p\n", "m");
+// 	printf("\n%d", printf("%p", NULL));
 // }

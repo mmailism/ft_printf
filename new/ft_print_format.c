@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/05 17:47:12 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/07 18:25:02 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ int	ft_print_nbr(int n)
 	len = 0;
 	num = ft_itoa(n);
 	len = ft_print_str(num);
+	free(num);
 	return (len);
 }
 
-int	ft_print_unsigned(unsigned int n)
+int	ft_print_unsigned(unsigned long n)
 {
 	int		length;
 	char	*num;
