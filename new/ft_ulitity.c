@@ -6,7 +6,7 @@
 /*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:53:06 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/07 18:25:39 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/09 17:43:59 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,15 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-char	*ft_utoi(unsigned long n)
+size_t	ft_unbrlen(unsigned long long int n, size_t base)
 {
-	char	*str;
-	int		i;
+	size_t	i;
 
-	i = ft_numlen(n);
-	str = 0;
-	if (!str)
-		return (NULL);
-	str[i] = '\0';
-	while (n != 0)
+	i = 1;
+	while (n >= (unsigned long long int)base)
 	{
-		str[i] = (n % 10) + '0';
-		n /= 10;
-		i--;
+		n /= base;
+		i++;
 	}
-	return (str);
+	return (i);
 }

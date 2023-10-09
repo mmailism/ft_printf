@@ -6,7 +6,7 @@
 /*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/07 18:25:02 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/09 17:43:42 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,24 @@ int	ft_print_nbr(int n)
 	return (len);
 }
 
-int	ft_print_unsigned(unsigned long n)
+int	ft_print_unsigned(unsigned long long int n, const char *base)
 {
-	int		length;
-	char	*num;
+	unsigned long long int		base_len;
+	int							*num;
 
-	length = 0;
-	if (n == 0)
-		length += write(1, "0", 1);
+	num = 0;
+	base_len = ft_strlen(base);
+	if (n >= base_len)
+	{
+		ft_print_unsigned(n / base_len, base);
+		ft_print_unsigned(n % base_len, base);
+	}
 	else
 	{
-		num = ft_utoi(n);
-		length += ft_print_str(num);
+		write(1, &base[n], 1);
+	num += ft_unbrlen(n, base_len);
 	}
-	return (length);
+	return (num);
 }
 
 int	ft_print_perc(void)

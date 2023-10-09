@@ -6,7 +6,7 @@
 /*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:56:53 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/07 18:25:23 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/09 17:44:26 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 int		ft_print_char(int c);
 int		ft_print_str(char *str);
 int		ft_print_nbr(int n);
-int		ft_print_unsigned(unsigned long n);
+int		ft_print_unsigned(unsigned long long int n, const char *base);
 int		ft_print_hlx(unsigned int n, const char base);
 int		ft_print_address(unsigned long long ptr);
 int		ft_print_perc(void);
 void	ft_putchar_fd(char c, int fd);
 void	ft_bzero(void *s, size_t n);
 char	*ft_itoa(int n);
-char	*ft_utoi(unsigned long n);
+size_t	ft_unbrlen(unsigned long long int n, size_t base);
 size_t	ft_strlen(const char *str);
 void	ft_put_hlx(unsigned int num, const char base);
 int		ft_ptrlen(uintptr_t n);
