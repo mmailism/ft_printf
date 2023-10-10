@@ -6,7 +6,7 @@
 /*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/09 17:44:10 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:09:05 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	print_format(const char sp, va_list ap)
 	else if (sp == 'd' || sp == 'i')
 		count += ft_print_nbr(va_arg(ap, int));
 	else if (sp == 'u')
-		count += ft_print_unsigned(va_arg(ap, unsigned int), "0123456789");
+		count += ft_print_unsigned(va_arg(ap, unsigned int));
 	else if (sp == 'x' || sp == 'X')
 		count += ft_print_hlx(va_arg(ap, unsigned int), sp);
 	else if (sp == '%')

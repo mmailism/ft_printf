@@ -6,7 +6,7 @@
 /*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:53:06 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/09 17:43:59 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/10 17:17:40 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,26 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-size_t	ft_unbrlen(unsigned long long int n, size_t base)
+size_t	u_digits(unsigned int n)
 {
-	size_t	i;
+	size_t	digits;
 
-	i = 1;
-	while (n >= (unsigned long long int)base)
+	digits = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
 	{
-		n /= base;
-		i++;
+		n /= 10;
+		digits += 1;
 	}
-	return (i);
+	return (digits);
+}
+
+void	ft_put_unsigned(unsigned int n)
+{
+	static char	digits[] = "0123456789";
+
+	if (n > 9)
+		ft_put_unsigned(n / 10);
+	write(1, &digits[n % 10], 1);
 }
