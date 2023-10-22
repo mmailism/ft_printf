@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:55:14 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/07 13:56:34 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/22 18:14:32 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,13 @@ void	ft_put_ptr(uintptr_t n)
 int	ft_print_address(unsigned long long n)
 {
 	int	length;
+	int	tmp;
 
 	length = 0;
-	length += write(1, "0x", 2);
+	tmp = write(1, "0x", 2);
+	if (tmp == -1)
+		return (-1);
+	length += tmp;
 	if (n == 0)
 		length += write(1, "0", 1);
 	else

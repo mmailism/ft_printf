@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/10 17:09:05 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/22 21:47:27 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	print_format(const char sp, va_list ap)
 		count += ft_print_hlx(va_arg(ap, unsigned int), sp);
 	else if (sp == '%')
 		count += ft_print_perc();
+	else if (write(1, &sp, 1) == -1)
+			return (-1);
 	else
-		return (write(1, &sp, 1));
+		write(1, &sp, 1);
 	return (count);
 }
 
@@ -44,15 +46,25 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		count;
+	int		tmp;
 
 	count = 0;
 	va_start(ap, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
-			count += print_format(*(++format), ap);
+		{
+			tmp = print_format(*(++format), ap);
+			if (tmp == -1)
+				return (-1);
+		}
 		else
-			count += write(1, format, 1);
+		{
+			tmp = write(1, format, 1);
+			if (tmp == -1)
+				return (-1);
+		}
+		count += tmp;
 		format++;
 	}
 	va_end(ap);
