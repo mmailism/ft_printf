@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/25 14:19:31 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/27 15:38:39 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,24 +101,24 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-int	main()
-{
-	int	count;
-	int	n;
-	int i;
+// int	main()
+// {
+// 	int	count;
+// 	int	n;
+// 	int i;
 
-	n = 100;
-	i = 127;
-	count = ft_printf("abc%s\n", "def");
-	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	ft_printf("big %X and small %x and percent %%\n", i, i);
-	ft_printf("address : %p %p\n", "-1", NULL);
-	write(1, "\n", 1);
-	write(1, "and", 3);
-	write(1, "\n\n", 2);
+// 	n = 100;
+// 	i = 127;
+// 	count = ft_printf("abc%s\n", "def");
+// 	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
+// 	ft_printf("big %X and small %x and percent %%\n", i, i);
+// 	ft_printf("address : %p %p\n", "-1", NULL);
+// 	write(1, "\n", 1);
+// 	write(1, "and", 3);
+// 	write(1, "\n\n", 2);
 
-	count = printf("abc%s\n", "def");
-	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	printf("big %X and small %x and percent %%\n", i, i);
-	printf("\n%d", printf("%p", NULL));
-}
+// 	count = printf("abc%s\n", "def");
+// 	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
+// 	printf("big %X and small %x and percent %%\n", i, i);
+// 	printf("\n%d", printf("%p", NULL));
+// }

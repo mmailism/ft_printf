@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*   ft_put_ulitity.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 17:55:14 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/27 16:05:58 by kpueankl         ###   ########.fr       */
+/*   Created: 2023/10/27 16:01:25 by kpueankl          #+#    #+#             */
+/*   Updated: 2023/10/27 16:09:42 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,44 +25,12 @@ int	ft_ptrlen(uintptr_t n)
 	return (len);
 }
 
-// void	ft_put_hlx(unsigned int n, const char base)
-// {
-// 	if (n >= 16)
-// 	{
-// 		ft_put_hlx(n / 16, base);
-// 		ft_put_hlx(n % 16, base);
-// 	}
-// 	else
-// 	{
-// 		if (n <= 9)
-// 			ft_putchar_fd((n + '0'), 1);
-// 		else
-// 		{
-// 			if (base == 'x')
-// 				ft_putchar_fd((n - 10 + 'a'), 1);
-// 			if (base == 'X')
-// 				ft_putchar_fd((n - 10 + 'A'), 1);
-// 		}
-// 	}
-// }
-
-// int	ft_print_hlx(unsigned int n, const char base)
-// {
-// 	if (n == 0)
-// 		return (write(1, "0", 1));
-// 	else if (n == -1)
-// 		return (-1);
-// 	else
-// 		ft_put_hlx(n, base);
-// 	return (ft_ptrlen(n));
-// }
-
-void	ft_put_ptr(uintptr_t n)
+void	ft_put_ptr(uintptr_t n, const char base)
 {
 	if (n >= 16)
 	{
-		ft_put_ptr(n / 16);
-		ft_put_ptr(n % 16);
+		ft_put_ptr(n / 16, base);
+		ft_put_ptr(n % 16, base);
 	}
 	else
 	{
@@ -77,7 +45,7 @@ void	ft_put_ptr(uintptr_t n)
 	}
 }
 
-int	ft_print_ptr(unsigned long long n)
+int	ft_print_ptr(unsigned long long n, const char base)
 {
 	int	length;
 
@@ -88,7 +56,7 @@ int	ft_print_ptr(unsigned long long n)
 		return (-1);
 	else
 	{
-		ft_put_ptr(n);
+		ft_put_ptr(n, base);
 		length += ft_ptrlen(n);
 	}
 	return (length);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:56:53 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/25 13:59:31 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/27 16:00:40 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
+int	ft_printf(const char *format, ...);
+int	ft_print_unsigned(unsigned int n);
 
 #endif
