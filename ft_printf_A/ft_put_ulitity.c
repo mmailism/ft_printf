@@ -6,7 +6,7 @@
 /*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:01:25 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/27 16:09:42 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:29:02 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_put_ptr(uintptr_t n, const char base)
 			ft_print_char((n - 10 + 'a'), 1);
 		else if (base == 'X')
 			ft_print_char((n - 10 + 'A'), 1);
-		else
-			ft_print_char((n - 10 + 'a'), 1);
 	}
 }
 
@@ -60,4 +58,31 @@ int	ft_print_ptr(unsigned long long n, const char base)
 		length += ft_ptrlen(n);
 	}
 	return (length);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*i;
+	size_t			j;
+
+	i = s;
+	j = 0;
+	if (n == 0)
+		return ;
+	while (j < n)
+	{
+		i[j] = 0;
+		j++;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t n)
+{
+	void	*alt;
+
+	alt = (void *)malloc(count * n);
+	if (alt == NULL)
+		return (NULL);
+	ft_bzero(alt, (count * n));
+	return (alt);
 }

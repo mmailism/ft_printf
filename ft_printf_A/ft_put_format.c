@@ -6,11 +6,60 @@
 /*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/27 15:37:14 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:20:02 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_nbrlen(long n)
+{
+	int	i;
+
+	i = 0;
+	if (n < 0)
+	{
+		i++;
+		n = -n;
+	}
+	if (n == 0)
+		i++;
+	while (n != 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		i;
+
+	i = ft_nbrlen(n);
+	str = ft_calloc(i + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	if (n == 0)
+		str[0] = '0';
+	if (n < 0)
+	{
+		str[0] = '-';
+		if (n == -2147483648)
+		{
+			str[--i] = '8';
+			n /= 10;
+		}
+		n = -n;
+	}
+	while (i-- && n != 0)
+	{
+		str[i] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (str);
+}
 
 int	ft_print_nbr(int n)
 {
@@ -43,19 +92,12 @@ ssize_t	u_digits(unsigned int n)
 	return (digits);
 }
 
-void	ft_put_unsigned(unsigned int n)
+int	ft_print_unsigned(unsigned int n)
 {
 	static char	digits[] = "0123456789";
 
 	if (n > 9)
-		ft_put_unsigned(n / 10);
+		ft_print_unsigned(n / 10);
 	write(1, &digits[n % 10], 1);
-}
-
-int	ft_print_unsigned(unsigned int n)
-{
-	if (n == -1)
-		return (-1);
-	ft_put_unsigned(n);
 	return (u_digits(n));
 }
