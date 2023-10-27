@@ -1,43 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_format.c                                  :+:      :+:    :+:   */
+/*   ft_put_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/25 13:46:46 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/25 15:09:12 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_print_char(int c)
-{
-	if (write(1, &c, 1) == -1)
-		return (-1);
-	return (1);
-}
-
-int	ft_print_str(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		return (6);
-	}
-	while (str[i])
-	{
-		if (write (1, &str[i], 1) == -1)
-			return (-1);
-		i++;
-	}
-	return (i);
-}
 
 int	ft_print_nbr(int n)
 {
@@ -55,15 +28,34 @@ int	ft_print_nbr(int n)
 	return (len);
 }
 
-int	ft_print_unsigned(unsigned int n)
+ssize_t	u_digits(unsigned int n)
 {
-	ft_put_unsigned(n);
-	return (u_digits(n));
+	ssize_t	digits;
+
+	digits = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n /= 10;
+		digits += 1;
+	}
+	return (digits);
 }
 
-int	ft_print_perc(void)
+void	ft_put_unsigned(unsigned int n)
 {
-	if (write(1, "%", 1) == -1)
+	static char	digits[] = "0123456789";
+
+	if (n > 9)
+		ft_put_unsigned(n / 10);
+	write(1, &digits[n % 10], 1);
+}
+
+int	ft_print_unsigned(unsigned int n)
+{
+	if (n == -1)
 		return (-1);
-	return (1);
+	ft_put_unsigned(n);
+	return (u_digits(n));
 }

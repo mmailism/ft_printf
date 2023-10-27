@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:55:14 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/22 18:14:32 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/25 14:36:14 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,37 @@ int	ft_ptrlen(uintptr_t n)
 	return (len);
 }
 
-void	ft_put_hlx(unsigned int n, const char base)
-{
-	if (n >= 16)
-	{
-		ft_put_hlx(n / 16, base);
-		ft_put_hlx(n % 16, base);
-	}
-	else
-	{
-		if (n <= 9)
-			ft_putchar_fd((n + '0'), 1);
-		else
-		{
-			if (base == 'x')
-				ft_putchar_fd((n - 10 + 'a'), 1);
-			if (base == 'X')
-				ft_putchar_fd((n - 10 + 'A'), 1);
-		}
-	}
-}
+// void	ft_put_hlx(unsigned int n, const char base)
+// {
+// 	if (n >= 16)
+// 	{
+// 		ft_put_hlx(n / 16, base);
+// 		ft_put_hlx(n % 16, base);
+// 	}
+// 	else
+// 	{
+// 		if (n <= 9)
+// 			ft_putchar_fd((n + '0'), 1);
+// 		else
+// 		{
+// 			if (base == 'x')
+// 				ft_putchar_fd((n - 10 + 'a'), 1);
+// 			if (base == 'X')
+// 				ft_putchar_fd((n - 10 + 'A'), 1);
+// 		}
+// 	}
+// }
 
-int	ft_print_hlx(unsigned int n, const char base)
-{
-	if (n == 0)
-		return (write(1, "0", 1));
-	else
-		ft_put_hlx(n, base);
-	return (ft_ptrlen(n));
-}
+// int	ft_print_hlx(unsigned int n, const char base)
+// {
+// 	if (n == 0)
+// 		return (write(1, "0", 1));
+// 	else if (n == -1)
+// 		return (-1);
+// 	else
+// 		ft_put_hlx(n, base);
+// 	return (ft_ptrlen(n));
+// }
 
 void	ft_put_ptr(uintptr_t n)
 {
@@ -65,24 +67,25 @@ void	ft_put_ptr(uintptr_t n)
 	else
 	{
 		if (n <= 9)
-			ft_putchar_fd((n + '0'), 1);
+			ft_print_char((n + '0'), 1);
+		else if (base == 'x')
+			ft_print_char((n - 10 + 'a'), 1);
+		else if (base == 'X')
+			ft_print_char((n - 10 + 'A'), 1);
 		else
-			ft_putchar_fd((n - 10 + 'a'), 1);
+			ft_print_char((n - 10 + 'a'), 1);
 	}
 }
 
-int	ft_print_address(unsigned long long n)
+int	ft_print_ptr(unsigned long long n)
 {
 	int	length;
-	int	tmp;
 
 	length = 0;
-	tmp = write(1, "0x", 2);
-	if (tmp == -1)
-		return (-1);
-	length += tmp;
 	if (n == 0)
-		length += write(1, "0", 1);
+		return (write(1, "0", 1));
+	else if (ft_print_str("0x") == -1)
+		return (-1);
 	else
 	{
 		ft_put_ptr(n);

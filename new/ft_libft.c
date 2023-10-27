@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_libft.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:46:29 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/22 21:47:58 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/25 14:30:43 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
+// void	ft_putchar_fd(char c, int fd)
+// {
+// 	write(fd, &c, 1);
+// }
 
 void	ft_bzero(void *s, size_t n)
 {
