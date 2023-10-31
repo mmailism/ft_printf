@@ -1,78 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ulitity.c                                       :+:      :+:    :+:   */
+/*   ft_print_ulitity.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:53:06 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/25 14:17:37 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/31 16:05:35 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_numlen(long n)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	unsigned char	*i;
+	size_t			j;
+
+	i = s;
+	j = 0;
+	if (n == 0)
+		return ;
+	while (j < n)
+	{
+		i[j] = 0;
+		j++;
+	}
+}
+
+ssize_t	ft_strlen(const char *str)
+{
+	size_t	i;
 
 	i = 0;
-	if (n < 0)
+	while (*str != '\0')
 	{
-		i++;
-		n = -n;
-	}
-	if (n == 0)
-		i++;
-	while (n != 0)
-	{
-		n /= 10;
+		str++;
 		i++;
 	}
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t n)
-{
-	void	*alt;
-
-	alt = (void *)malloc(count * n);
-	if (alt == NULL)
-		return (NULL);
-	ft_bzero(alt, (count * n));
-	return (alt);
-}
-
-char	*ft_itoa(int n)
-{
-	char	*str;
-	int		i;
-
-	i = ft_numlen(n);
-	str = ft_calloc(i + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	if (n < 0)
-	{
-		str[0] = '-';
-		if (n == -2147483648)
-		{
-			str[--i] = '8';
-			n /= 10;
-		}
-		n = -n;
-	}
-	while (i-- && n != 0)
-	{
-		str[i] = (n % 10) + '0';
-		n /= 10;
-	}
-	return (str);
-}
-
-size_t	u_digits(unsigned int n)
+ssize_t	u_digits(unsigned int n)
 {
 	size_t	digits;
 

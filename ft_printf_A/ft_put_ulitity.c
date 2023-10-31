@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_ulitity.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:01:25 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/27 17:29:02 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:21:26 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	ft_put_ptr(uintptr_t n, const char base)
 	else
 	{
 		if (n <= 9)
-			ft_print_char((n + '0'), 1);
+			ft_print_str((n + '0'), 1);
 		else if (base == 'x')
-			ft_print_char((n - 10 + 'a'), 1);
+			ft_print_str((n - 10 + 'a'), 1);
 		else if (base == 'X')
-			ft_print_char((n - 10 + 'A'), 1);
+			ft_print_str((n - 10 + 'A'), 1);
 	}
 }
 
@@ -50,8 +50,6 @@ int	ft_print_ptr(unsigned long long n, const char base)
 	length = 0;
 	if (n == 0)
 		return (write(1, "0", 1));
-	else if (ft_print_str("0x") == -1)
-		return (-1);
 	else
 	{
 		ft_put_ptr(n, base);

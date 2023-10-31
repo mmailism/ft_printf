@@ -6,15 +6,45 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/25 13:50:30 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/31 16:06:38 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 
 #include "ft_printf.h"
+
+ssize_t	ft_print_char(int c)
+{
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
+}
+
+ssize_t	ft_print_str(char *str)
+{
+	ssize_t	i;
+
+	i = 0;
+	if (!str)
+	{
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		return (6);
+	}
+	while (str[i])
+	{
+		if (write (1, &str[i], 1) == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_print_perc(void)
+{
+	if (write(1, "%", 1) == -1)
+		return (-1);
+	return (1);
+}
 
 int	print_format(const char sp, va_list ap)
 {
@@ -26,7 +56,7 @@ int	print_format(const char sp, va_list ap)
 	else if (sp == 's')
 		count += ft_print_str(va_arg(ap, char *));
 	else if (sp == 'p')
-		count += ft_print_address(va_arg(ap, unsigned long long));
+		count += ft_print_ptr(va_arg(ap, unsigned long long));
 	else if (sp == 'd' || sp == 'i')
 		count += ft_print_nbr(va_arg(ap, int));
 	else if (sp == 'u')
@@ -69,25 +99,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (count);
-}
-
-int	main()
-{
-	int	count;
-	int	n;
-	int i;
-
-	n = 100;
-	i = 127;
-	count = ft_printf("abc%s\n", "def");
-	ft_printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	ft_printf("big %X and small %x and percent %%\n", i, i);
-	ft_printf("address : %p %p\n", "-1", NULL);
-	write(1, "\n", 1);
-	write(1, "and", 3);
-	write(1, "\n\n", 2);
-	count = printf("abc%s\n", "def");
-	printf("count : %d, char : %c, ascii char : %i\n", count, n, n);
-	printf("big %X and small %x and percent %%\n", i, i);
-	printf("\n%d", printf("%p", NULL));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/27 17:10:22 by kpueankl         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:17:31 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_print_char(int c)
 	return (1);
 }
 
-int	ft_print_str(char *str)
+int	ft_print_str(uintptr_t *str)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ int	print_format(const char sp, va_list ap)
 	if (sp == 'c')
 		count += ft_print_char(va_arg(ap, int));
 	else if (sp == 's')
-		count += ft_print_str(va_arg(ap, char *));
+		count += ft_print_str(va_arg(ap, long unsigned int *));
 	else if (sp == 'p')
 		count += ft_print_ptr(va_arg(ap, unsigned long long), 2);
 	else if (sp == 'd' || sp == 'i')
