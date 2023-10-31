@@ -6,26 +6,11 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:55:14 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 16:05:50 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/31 17:36:55 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-ssize_t	ft_ptrlen(uintptr_t n)
-{
-	ssize_t	len;
-
-	len = 0;
-	if (n == -1)
-		return (write(1, "-1", 2));
-	while (n != 0)
-	{
-		len++;
-		n = n / 16;
-	}
-	return (len);
-}
 
 void	ft_put_hlx(unsigned int n, const char base)
 {
@@ -48,7 +33,7 @@ void	ft_put_hlx(unsigned int n, const char base)
 	}
 }
 
-ssize_t	ft_print_hlx(unsigned int n, const char base)
+int	ft_print_hlx(unsigned int n, const char base)
 {
 	if (n == 0)
 		return (write(1, "0", 1));
@@ -73,15 +58,18 @@ void	ft_put_ptr(uintptr_t n)
 	}
 }
 
-ssize_t	ft_print_ptr(unsigned long long n)
+int	ft_print_ptr(unsigned long long n)
 {
-	ssize_t	length;
+	int	length;
+	int	tmp;
 
 	length = 0;
-	if (n == 0)
-		return (write(1, "0", 1));
-	else if (ft_print_str("0x") == -1)
+	tmp = write(1, "0x", 2);
+	if (tmp == -1)
 		return (-1);
+	length += tmp;
+	if (n == 0)
+		length += write(1, "0", 1);
 	else
 	{
 		ft_put_ptr(n);

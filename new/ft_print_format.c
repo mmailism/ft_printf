@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 15:01:48 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/31 18:32:56 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,13 @@ ssize_t	ft_numlen(long n)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t n)
-{
-	void	*alt;
-
-	alt = (void *)malloc(count * n);
-	if (alt == NULL)
-		return (NULL);
-	ft_bzero(alt, (count * n));
-	return (alt);
-}
-
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		i;
 
 	i = ft_numlen(n);
-	str = ft_calloc(i + 1, sizeof(char));
+	str = (char *)malloc(i * n);
 	if (!str)
 		return (NULL);
 	if (n == 0)
@@ -72,18 +61,14 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-ssize_t	ft_print_nbr(int n)
+int	ft_print_nbr(int n)
 {
-	ssize_t		len;
-	char		*num;
-	ssize_t		tmp;
+	int		len;
+	char	*num;
 
 	len = 0;
 	num = ft_itoa(n);
-	tmp = ft_print_str(num);
-	if (tmp == -1)
-		return (-1);
-	len = tmp;
+	len = ft_print_str(num);
 	free(num);
 	return (len);
 }

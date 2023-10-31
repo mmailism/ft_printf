@@ -6,25 +6,34 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:53:06 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 16:05:35 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/31 18:50:50 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_ptrlen(uintptr_t n)
 {
-	unsigned char	*i;
-	size_t			j;
+	int	len;
 
-	i = s;
-	j = 0;
-	if (n == 0)
-		return ;
-	while (j < n)
+	len = 0;
+	while (n != 0)
 	{
-		i[j] = 0;
-		j++;
+		len++;
+		n = n / 16;
+	}
+	return (len);
+}
+
+void	ft_put_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
 	}
 }
 

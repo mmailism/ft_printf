@@ -6,7 +6,7 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 16:06:38 by iammai           ###   ########.fr       */
+/*   Updated: 2023/10/31 18:52:09 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ ssize_t	ft_print_str(char *str)
 	ssize_t	i;
 
 	i = 0;
-	if (!str)
+	if (str == NULL)
 	{
-		if (write(1, "(null)", 6) == -1)
-			return (-1);
-		return (6);
+		ft_put_str("NULL");
+		return (4);
 	}
 	while (str[i])
 	{
-		if (write (1, &str[i], 1) == -1)
+		if (write(1, &str[i], 1) == -1)
 			return (-1);
 		i++;
 	}
