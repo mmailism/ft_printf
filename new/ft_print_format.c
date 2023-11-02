@@ -6,71 +6,50 @@
 /*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 18:32:56 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/02 14:09:39 by iammai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t	ft_numlen(long n)
+ssize_t	ft_nbrlen_base(int n, size_t base)
 {
 	ssize_t	i;
 
-	i = 0;
-	if (n < 0)
+	i = 1;
+	while (n >= (int)base)
 	{
-		i++;
-		n = -n;
-	}
-	if (n == 0)
-		i++;
-	while (n != 0)
-	{
-		n /= 10;
+		n /= base;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_itoa(int n)
+int	ft_print_nbr(int n, int fd)
 {
-	char	*str;
-	int		i;
+	const char	*base = "0123456789";
+	int			nbr_len;
 
-	i = ft_numlen(n);
-	str = (char *)malloc(i * n);
-	if (!str)
-		return (NULL);
-	if (n == 0)
-		str[0] = '0';
+	nbr_len = 0;
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
+	}
 	if (n < 0)
 	{
-		str[0] = '-';
-		if (n == -2147483648)
-		{
-			str[--i] = '8';
-			n /= 10;
-		}
-		n = -n;
+		write(fd, "-", 1);
+		nbr_len += ft_print_nbr(-n, fd);
 	}
-	while (i-- && n != 0)
+	else if (n >= 10)
 	{
-		str[i] = (n % 10) + '0';
-		n /= 10;
+		ft_print_nbr((n / 10), fd);
+		ft_print_nbr((n % 10), fd);
 	}
-	return (str);
-}
-
-int	ft_print_nbr(int n)
-{
-	int		len;
-	char	*num;
-
-	len = 0;
-	num = ft_itoa(n);
-	len = ft_print_str(num);
-	free(num);
-	return (len);
+	else
+		write (fd, &base[n], 1);
+	nbr_len += ft_nbrlen_base(n, ft_strlen(base));
+	return (nbr_len);
 }
 
 ssize_t	ft_print_unsigned(unsigned int n)
