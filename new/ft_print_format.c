@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:08 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/02 14:09:39 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/06 17:21:37 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ ssize_t	ft_nbrlen_base(int n, size_t base)
 	return (i);
 }
 
+int	ft_putlongnbr(void)
+{
+	if (write(1, "-2147483648", 11) == -1)
+		return (-1);
+	return (11);
+}
+
 int	ft_print_nbr(int n, int fd)
 {
 	const char	*base = "0123456789";
@@ -32,28 +39,24 @@ int	ft_print_nbr(int n, int fd)
 
 	nbr_len = 0;
 	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
+		return (ft_putlongnbr());
 	if (n < 0)
 	{
-		write(fd, "-", 1);
-		nbr_len += ft_print_nbr(-n, fd);
+		if (write(fd, "-", 1) == -1)
+			return (-1);
+		nbr_len++;
+		n = n * (-1);
 	}
-	else if (n >= 10)
+	if (n >= 10)
 	{
-		ft_print_nbr((n / 10), fd);
-		ft_print_nbr((n % 10), fd);
+		if (ft_print_nbr((n / 10), fd) == -1)
+			return (-1);
+		if (ft_print_nbr((n % 10), fd) == -1)
+			return (-1);
 	}
 	else
-		write (fd, &base[n], 1);
-	nbr_len += ft_nbrlen_base(n, ft_strlen(base));
+		if (write (fd, &base[n], 1) == -1)
+			return (-1);
+	nbr_len += ft_nbrlen_base(n, 10);
 	return (nbr_len);
-}
-
-ssize_t	ft_print_unsigned(unsigned int n)
-{
-	ft_put_unsigned(n);
-	return (u_digits(n));
 }

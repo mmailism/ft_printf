@@ -3,42 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:55:14 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 17:36:55 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/06 16:16:23 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_put_hlx(unsigned int n, const char base)
+int	ft_put_hlx(unsigned int n, const char base)
 {
+	int	tmp;
+
+	tmp = 0;
 	if (n >= 16)
 	{
-		ft_put_hlx(n / 16, base);
-		ft_put_hlx(n % 16, base);
+		if (ft_put_hlx(n / 16, base) == -1)
+			return (-1);
+		if (ft_put_hlx(n % 16, base) == -1)
+			return (-1);
 	}
 	else
 	{
 		if (n <= 9)
-			ft_print_char(n + '0');
+			tmp = ft_print_char(n + '0');
 		else
 		{
 			if (base == 'x')
-				ft_print_char(n - 10 + 'a');
+				tmp = ft_print_char(n - 10 + 'a');
 			if (base == 'X')
-				ft_print_char(n - 10 + 'A');
+				tmp = ft_print_char(n - 10 + 'A');
 		}
 	}
+	if (tmp == -1)
+		return (-1);
+	return (0);
 }
 
 int	ft_print_hlx(unsigned int n, const char base)
 {
+	int	len;
+
+	len = 0;
 	if (n == 0)
-		return (write(1, "0", 1));
+	{
+		if (write(1, "0", 1) == -1)
+			return (-1);
+		len++;
+		return (len);
+	}
 	else
-		ft_put_hlx(n, base);
+		if (ft_put_hlx(n, base) == -1)
+			return (-1);
 	return (ft_ptrlen(n));
 }
 
@@ -76,4 +93,11 @@ int	ft_print_ptr(unsigned long long n)
 		length += ft_ptrlen(n);
 	}
 	return (length);
+}
+
+int	ft_print_unsigned(unsigned int n)
+{
+	if (ft_put_unsigned(n) == -1)
+		return (-1);
+	return (u_digits(n));
 }

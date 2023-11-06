@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:47:43 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/11/02 14:01:24 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/06 17:06:43 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ ssize_t	ft_print_str(char *str)
 	i = 0;
 	if (str == NULL)
 	{
-		ft_put_str("NULL");
-		return (4);
+		if (ft_put_str("(null)") == -1)
+			return (-1);
+		return (6);
 	}
 	while (str[i])
 	{
@@ -67,7 +68,10 @@ int	print_format(const char sp, va_list ap)
 	else if (write(1, &sp, 1) == -1)
 		return (-1);
 	else
-		write(1, &sp, 1);
+	{
+		if (write(1, &sp, 1) == -1)
+			return (-1);
+	}
 	return (count);
 }
 

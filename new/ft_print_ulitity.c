@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ulitity.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iammai <iammai@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpueankl <kpueankl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:53:06 by kpueankl          #+#    #+#             */
-/*   Updated: 2023/10/31 18:50:50 by iammai           ###   ########.fr       */
+/*   Updated: 2023/11/06 15:48:16 by kpueankl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ int	ft_ptrlen(uintptr_t n)
 	return (len);
 }
 
-void	ft_put_str(char *str)
+int	ft_put_str(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		if (write(1, &str[i], 1) == -1)
+			return (-1);
 		i++;
 	}
+	return (0);
 }
 
 ssize_t	ft_strlen(const char *str)
@@ -65,11 +67,16 @@ ssize_t	u_digits(unsigned int n)
 	return (digits);
 }
 
-void	ft_put_unsigned(unsigned int n)
+int	ft_put_unsigned(unsigned int n)
 {
 	static char	digits[] = "0123456789";
 
 	if (n > 9)
-		ft_put_unsigned(n / 10);
-	write(1, &digits[n % 10], 1);
+	{
+		if (ft_put_unsigned(n / 10) == -1)
+			return (-1);
+	}
+	if (write(1, &digits[n % 10], 1) == -1)
+		return (-1);
+	return (0);
 }
